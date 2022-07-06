@@ -75,12 +75,7 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: "flex", justifyContent: "center" }}
-          >
+          <Typography variant="h6" noWrap component="div" m="auto">
             Campus Management System
           </Typography>
         </Toolbar>

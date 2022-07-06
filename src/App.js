@@ -12,7 +12,7 @@ import {
   NewStudentContainer,
 } from "./components/containers";
 
-import Header from "./components/containers/Header";
+import Header from "./components/Header";
 
 // if you create separate components for adding/editing
 // a student or campus, make sure you add routes to those
