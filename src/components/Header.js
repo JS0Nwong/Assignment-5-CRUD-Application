@@ -2,7 +2,6 @@ import React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -63,7 +62,6 @@ export default function Header() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -104,7 +102,7 @@ export default function Header() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem disablePadding>
+          <ListItem>
             <ListItemButton component={Link} to="/">
               <ListItemIcon>
                 <HomeIcon />
@@ -113,7 +111,7 @@ export default function Header() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem>
             <ListItemButton component={Link} to="/campuses">
               <ListItemIcon>
                 <SchoolIcon />
@@ -122,7 +120,7 @@ export default function Header() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem>
             <ListItemButton component={Link} to="/students">
               <ListItemIcon>
                 <GroupIcon />

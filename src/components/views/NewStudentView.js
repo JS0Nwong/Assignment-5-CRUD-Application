@@ -124,7 +124,9 @@ const NewStudentView = (props) => {
     <FormContainer>
       <Box
         sx={{
-          border: "1px solid black",
+          backgroundColor: "#045de9",
+          backgroundImage: "linear-gradient(315deg, #045de9 0%, #09c6f9 40%)",
+          borderRadius: "1.25em",
           m: "2em",
           p: "2em",
           minWidth: "260px",
