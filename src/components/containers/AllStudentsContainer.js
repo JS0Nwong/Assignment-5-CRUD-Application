@@ -7,7 +7,6 @@ If needed, it also defines the component's "connect" function.
 ================================================== */
 import { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 
 import { fetchAllStudentsThunk, deleteStudentThunk } from "../../store/thunks";
 
@@ -52,4 +51,4 @@ const mapDispatch = (dispatch) => {
 // Export store-connected container by default
 // AllStudentsContainer uses "connect" function to connect to Redux Store and to read values from the Store
 // (and re-read the values when the Store State updates).
-export default withRouter(connect(mapState, mapDispatch)(AllStudentsContainer));
+export default connect(mapState, mapDispatch)(AllStudentsContainer);
