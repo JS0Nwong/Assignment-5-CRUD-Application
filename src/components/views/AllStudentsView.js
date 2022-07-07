@@ -5,47 +5,58 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
+import Heading from "../Heading";
 
 const AllStudentsView = (props) => {
-  const {students, deleteStudent} = props;
+  const { students, deleteStudent } = props;
   // If there is no student, display a message
   if (!students.length) {
     return (
-    <div>
-      <p>There are no students.</p>
-      <Link to={`newstudent`}>
-        <button>Add New Student</button>
-      </Link>
-    </div>
+      <>
+        <Heading component="h1" variant="h4">
+          All Students
+        </Heading>
+        <Typography paragraph sx={{ m: "2em" }}>
+          There are currently no students
+        </Typography>
+        <Button
+          variant="contained"
+          component={Link}
+          to="/newstudent"
+          sx={{ m: "2em" }}
+        >
+          Add New Student
+        </Button>
+      </>
     );
   }
-  
-  // If there is at least one student, render All Students view 
+
+  // If there is at least one student, render All Students view
   return (
     <div>
       <h1>All Students</h1>
 
       {students.map((student) => {
-          let name = student.firstname + " " + student.lastname;
-          return (
-            <div key={student.id}>
-              <Link to={`/student/${student.id}`}>
-                <h2>{name}</h2>
-              </Link>
-              <button onClick={() => deleteStudent(student.id)}>Delete</button>
-              <hr/>
-            </div>
-          );
-        }
-      )}
-      <br/>
+        let name = student.firstname + " " + student.lastname;
+        return (
+          <div key={student.id}>
+            <Link to={`/student/${student.id}`}>
+              <h2>{name}</h2>
+            </Link>
+            <button onClick={() => deleteStudent(student.id)}>Delete</button>
+            <hr />
+          </div>
+        );
+      })}
+      <br />
       <Link to={`/newstudent`}>
         <button>Add New Student</button>
       </Link>
-      <br/><br/>
+      <br />
+      <br />
     </div>
   );
 };
-
 
 export default AllStudentsView;
