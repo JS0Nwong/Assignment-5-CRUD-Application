@@ -17,7 +17,7 @@ const HomePageView = () => {
   return (
     <Container maxWidth="sm" sx={{ mt: "5em", minWidth: "300px" }}>
       <Box>
-        <Typography component="h1" variant="h4">
+        <Typography component="h1" variant="h3">
           Welcome to the Campus Management System
         </Typography>
       </Box>
@@ -27,7 +27,7 @@ const HomePageView = () => {
           Easily manage all students across different campuses.
         </Typography>
 
-        <Typography paragraph m="2em">
+        <Typography paragraph m="3em">
           Choose one of the following options to get started.
         </Typography>
 

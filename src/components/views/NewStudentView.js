@@ -12,7 +12,7 @@ const FormContainer = styled("div")(() => ({
   justifyContent: "center",
 }));
 
-const StudentInfoField = styled(TextField)(({ theme }) => ({
+const StudentInfoField = styled(TextField)(() => ({
   margin: "2em",
 }));
 
