@@ -12,6 +12,16 @@ class NewCampusContainer extends Component {
     };
   }
 
+  handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   render() {
     return <NewCampusView />;
   }
