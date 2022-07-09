@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { addCampusThunk } from "../../store/thunks";
@@ -9,11 +10,22 @@ class NewCampusContainer extends Component {
     this.state = {
       campusName: "",
       campusId: null,
+      redirect: false,
+      redirectId: "",
     };
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
+
+    const newCampus = await this.props.addCampus({ ...this.state });
+
+    this.setState({
+      campusName: "",
+      campusId: null,
+      redirect: true,
+      redirectId: newCampus.id,
+    });
   };
 
   handleChange = (e) => {
@@ -22,8 +34,17 @@ class NewCampusContainer extends Component {
     });
   };
 
+  componentWillUnmount() {
+    this.setState({ redirect: false, redirectId: null });
+  }
+
   render() {
-    return <NewCampusView />;
+    return (
+      <NewCampusView
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
