@@ -56,6 +56,10 @@ const NewStudentView = (props) => {
             label="First Name"
             name="firstname"
             InputLabelProps={{ required: false }}
+            inputProps={{
+              pattern: "[a-zA-Z]+",
+              title: "Only alphabetic characters are allowed.",
+            }}
             onChange={(e) => handleChange}
             required
           />
@@ -63,6 +67,10 @@ const NewStudentView = (props) => {
             variant="outlined"
             label="Last Name"
             name="lastname"
+            inputProps={{
+              pattern: "[a-zA-Z]+",
+              title: "Only alphabetic characters are allowed.",
+            }}
             InputLabelProps={{ required: false }}
             onChange={(e) => handleChange}
             required
@@ -70,16 +78,16 @@ const NewStudentView = (props) => {
           <StudentInfoField
             variant="outlined"
             type="number"
-            name="campusid"
+            name="campusId"
             label="Campus ID"
             InputLabelProps={{ required: false }}
             onChange={(e) => handleChange}
             sx={{
-              "[type=number]::-webkit-outer-spin-button": {
-                "-webkit-appearance": "none",
+              "[type=number]::webkit-outer-spin-button": {
+                WebkitAppearance: "none",
               },
               "[type=number]::-webkit-inner-spin-button": {
-                "-webkit-appearance": "none",
+                WebkitAppearance: "none",
               },
             }}
             required
