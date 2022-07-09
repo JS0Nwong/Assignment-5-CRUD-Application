@@ -56,11 +56,11 @@ const NewCampusView = (props) => {
               label="Campus ID"
               type="number"
               sx={{
-                "&::webkitOuterSpinButton": {
-                  webkitAppearance: "none",
+                "[type=number]::webkit-outer-spin-button": {
+                  WebkitAppearance: "none",
                 },
-                "&::webkitInnerSpinButton": {
-                  webkitAppearance: "none",
+                "[type=number]::-webkit-inner-spin-button": {
+                  WebkitAppearance: "none",
                 },
               }}
               InputLabelProps={{ required: false }}

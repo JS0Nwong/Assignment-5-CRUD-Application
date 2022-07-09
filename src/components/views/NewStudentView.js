@@ -83,11 +83,11 @@ const NewStudentView = (props) => {
             InputLabelProps={{ required: false }}
             onChange={(e) => handleChange}
             sx={{
-              "&::webkitOuterSpinButton": {
-                webkitAppearance: "none",
+              "[type=number]::webkit-outer-spin-button": {
+                WebkitAppearance: "none",
               },
-              "&::webkitInnerSpinButton": {
-                webkitAppearance: "none",
+              "[type=number]::-webkit-inner-spin-button": {
+                WebkitAppearance: "none",
               },
             }}
             required
