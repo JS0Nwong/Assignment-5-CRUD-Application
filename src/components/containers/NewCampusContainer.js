@@ -1,7 +1,7 @@
-import axios from "axios";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { addCampusThunk } from "../../store/thunks";
+import { Redirect } from "react-router-dom";
 import NewCampusView from "../views/NewCampusView";
 
 class NewCampusContainer extends Component {
@@ -39,6 +39,10 @@ class NewCampusContainer extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      <Redirect to={`/campuses/${this.state.redirectId}`} />;
+    }
+
     return (
       <NewCampusView
         handleChange={this.handleChange}
