@@ -6,18 +6,13 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Heading from "../Heading";
 import { Typography, Button } from "@mui/material";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
     return (
-      <>
-        <Heading component="h1" variant="h4">
-          All Campuses
-        </Heading>
-
+      <div>
         <Typography paragraph sx={{ m: "2em" }}>
           There are currently no campuses
         </Typography>
@@ -29,15 +24,13 @@ const AllCampusesView = (props) => {
         >
           Add New Campus
         </Button>
-      </>
+      </div>
     );
   }
 
   // If there is at least one campus, render All Campuses view
   return (
     <div>
-      <h1>All Campuses</h1>
-
       {props.allCampuses.map((campus) => (
         <div key={campus.id}>
           <Link to={`/campus/${campus.id}`}>

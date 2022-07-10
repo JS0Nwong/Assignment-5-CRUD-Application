@@ -6,7 +6,6 @@ It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
-import Heading from "../Heading";
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -14,9 +13,6 @@ const AllStudentsView = (props) => {
   if (!students.length) {
     return (
       <>
-        <Heading component="h1" variant="h4">
-          All Students
-        </Heading>
         <Typography paragraph sx={{ m: "2em" }}>
           There are currently no students
         </Typography>
@@ -35,8 +31,6 @@ const AllStudentsView = (props) => {
   // If there is at least one student, render All Students view
   return (
     <div>
-      <h1>All Students</h1>
-
       {students.map((student) => {
         let name = student.firstname + " " + student.lastname;
         return (
