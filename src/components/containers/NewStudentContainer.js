@@ -42,8 +42,6 @@ class NewStudentContainer extends Component {
       campusId: this.state.campusId,
     };
 
-    console.log(student);
-
     // Add new student in back-end database
     let newStudent = await this.props.addStudent(student);
 
