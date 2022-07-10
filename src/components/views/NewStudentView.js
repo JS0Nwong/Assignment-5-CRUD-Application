@@ -60,7 +60,7 @@ const NewStudentView = (props) => {
               pattern: "[a-zA-Z]+",
               title: "Only alphabetic characters are allowed.",
             }}
-            onChange={(e) => handleChange}
+            onChange={handleChange}
             required
           />
           <StudentInfoField
@@ -72,7 +72,7 @@ const NewStudentView = (props) => {
               title: "Only alphabetic characters are allowed.",
             }}
             InputLabelProps={{ required: false }}
-            onChange={(e) => handleChange}
+            onChange={handleChange}
             required
           />
           <StudentInfoField
@@ -81,7 +81,7 @@ const NewStudentView = (props) => {
             name="campusId"
             label="Campus ID"
             InputLabelProps={{ required: false }}
-            onChange={(e) => handleChange}
+            onChange={handleChange}
             sx={{
               "[type=number]::webkit-outer-spin-button": {
                 WebkitAppearance: "none",

@@ -40,10 +40,10 @@ const NewCampusView = (props) => {
           <Box sx={{ width: "100%" }}>
             <CampusInfoField
               variant="outlined"
-              name="campusName"
+              name="name"
               label="Campus Name"
               inputProps={{
-                pattern: "[a-zA-Z]+",
+                pattern: "[a-zA-Z ]+",
                 title: "Only alphabetic characters are allowed.",
               }}
               InputLabelProps={{ required: false }}
@@ -52,20 +52,22 @@ const NewCampusView = (props) => {
             />
             <CampusInfoField
               variant="outlined"
-              name="campusId"
-              label="Campus ID"
-              type="number"
-              sx={{
-                "[type=number]::webkit-outer-spin-button": {
-                  WebkitAppearance: "none",
-                },
-                "[type=number]::-webkit-inner-spin-button": {
-                  WebkitAppearance: "none",
-                },
-              }}
+              name="address"
+              label="Address"
               InputLabelProps={{ required: false }}
               onChange={handleChange}
               required
+            />
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CampusInfoField
+              variant="outlined"
+              name="description"
+              label="Description"
+              multiline
+              rows={4}
+              onChange={handleChange}
+              sx={{ width: "75%" }}
             />
           </Box>
 
