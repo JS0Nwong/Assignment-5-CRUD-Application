@@ -9,9 +9,10 @@ class NewCampusContainer extends Component {
     super();
     this.state = {
       campusName: "",
-      campusId: null,
+      address: "",
+      description: "",
       redirect: false,
-      redirectId: "",
+      redirectId: null,
     };
   }
 
@@ -22,7 +23,8 @@ class NewCampusContainer extends Component {
 
     this.setState({
       campusName: "",
-      campusId: null,
+      address: "",
+      description: "",
       redirect: true,
       redirectId: newCampus.id,
     });
@@ -39,8 +41,9 @@ class NewCampusContainer extends Component {
   }
 
   render() {
+    console.log(this.state.redirect);
     if (this.state.redirect) {
-      <Redirect to={`/campuses/${this.state.redirectId}`} />;
+      return <Redirect to={`/campus/${this.state.redirectId}`} />;
     }
 
     return (
