@@ -6,7 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, Box } from "@mui/material";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
@@ -32,22 +32,19 @@ const AllCampusesView = (props) => {
   return (
     <div>
       {props.allCampuses.map((campus) => (
-        <div key={campus.id}>
+        <Box key={campus.id}>
           <Link to={`/campus/${campus.id}`}>
             <h2>{campus.name}</h2>
           </Link>
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
-          <hr />
-        </div>
+        </Box>
       ))}
-      <br />
-      <Link to={`/newcampus`}>
-        <button>Add New Campus</button>
-      </Link>
-      <br />
-      <br />
+
+      <Button variant="contained" component={Link} to="/newcampus">
+        Add New Campus
+      </Button>
     </div>
   );
 };
