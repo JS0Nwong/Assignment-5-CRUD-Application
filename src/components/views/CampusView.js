@@ -4,7 +4,15 @@ CampusView.js
 The Views component is responsible for rendering web page with data provided by the corresponding Container component.
 It constructs a React component to display a single campus and its students (if any).
 ================================================== */
+import {
+  Box,
+  CardActionArea,
+  CardContent,
+  Divider,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
+import { BskCard } from "../BskCard";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
@@ -13,19 +21,32 @@ const CampusView = (props) => {
   // Render a single Campus view with list of its students
   return (
     <div>
-      <h1>{campus.name}</h1>
-      <p>{campus.address}</p>
-      <p>{campus.description}</p>
-      {campus.students.map((student) => {
-        let name = student.firstname + " " + student.lastname;
-        return (
-          <div key={student.id}>
-            <Link to={`/student/${student.id}`}>
-              <h2>{name}</h2>
-            </Link>
-          </div>
-        );
-      })}
+      <Box>
+        <Typography variant="h3" component="h1" m="0.75em">
+          {campus.name}
+        </Typography>
+        <Typography variant="h6" paragraph>
+          {campus.address}
+        </Typography>
+        <Typography variant="h6" paragraph>
+          {campus.description}
+        </Typography>
+        <Typography variant="h5" component="h2" mt="3em">
+          Students
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          {campus.students.map((student) => {
+            let name = student.firstname + " " + student.lastname;
+            return (
+              <BskCard key={student.id} variant="outlined">
+                <CardActionArea to={`/student/${student.id}`} component={Link}>
+                  <CardContent sx={{ padding: "1.25em" }}>{name}</CardContent>
+                </CardActionArea>
+              </BskCard>
+            );
+          })}
+        </Box>
+      </Box>
     </div>
   );
 };

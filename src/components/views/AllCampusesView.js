@@ -6,7 +6,15 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Typography, Button, Box } from "@mui/material";
+import {
+  Typography,
+  Button,
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+} from "@mui/material";
+import { BskCard } from "../BskCard";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
@@ -31,18 +39,34 @@ const AllCampusesView = (props) => {
   // If there is at least one campus, render All Campuses view
   return (
     <div>
-      {props.allCampuses.map((campus) => (
-        <Box key={campus.id}>
-          <Link to={`/campus/${campus.id}`}>
-            <h2>{campus.name}</h2>
-          </Link>
-          <h4>campus id: {campus.id}</h4>
-          <p>{campus.address}</p>
-          <p>{campus.description}</p>
-        </Box>
-      ))}
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        {props.allCampuses.map((campus) => (
+          <BskCard variant="outlined" key={campus.id}>
+            <CardActionArea component={Link} to={`/campus/${campus.id}`}>
+              <CardContent sx={{ padding: "1.25em" }}>
+                <h2>{campus.name}</h2>
 
-      <Button variant="contained" component={Link} to="/newcampus">
+                <Typography variant="h6" component="h4">
+                  Campus ID: {campus.id}
+                </Typography>
+                <Typography variant="h6" component="p" fontSize="16px">
+                  {campus.address}
+                </Typography>
+                <Typography variant="h6" component="p" fontSize="16px">
+                  {campus.description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </BskCard>
+        ))}
+      </Box>
+
+      <Button
+        variant="contained"
+        component={Link}
+        to="/newcampus"
+        sx={{ m: "2.5em" }}
+      >
         Add New Campus
       </Button>
     </div>

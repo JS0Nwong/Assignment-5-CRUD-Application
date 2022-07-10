@@ -5,7 +5,15 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+import {
+  Typography,
+  Button,
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+} from "@mui/material";
+import { BskCard } from "../BskCard";
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -31,24 +39,31 @@ const AllStudentsView = (props) => {
   // If there is at least one student, render All Students view
   return (
     <div>
-      {students.map((student) => {
-        let name = student.firstname + " " + student.lastname;
-        return (
-          <div key={student.id}>
-            <Link to={`/student/${student.id}`}>
-              <h2>{name}</h2>
-            </Link>
-            <button onClick={() => deleteStudent(student.id)}>Delete</button>
-            <hr />
-          </div>
-        );
-      })}
-      <br />
-      <Link to={`/newstudent`}>
-        <button>Add New Student</button>
-      </Link>
-      <br />
-      <br />
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        {students.map((student) => {
+          let name = student.firstname + " " + student.lastname;
+          return (
+            <BskCard variant="outlined" key={student.id}>
+              <CardActionArea component={Link} to={`/student/${student.id}`}>
+                <CardContent sx={{ padding: "1.25em" }}>
+                  <h2>{name}</h2>
+
+                  <Button
+                    variant="contained"
+                    onClick={() => deleteStudent(student)}
+                  >
+                    Delete
+                  </Button>
+                </CardContent>
+              </CardActionArea>
+            </BskCard>
+          );
+        })}
+      </Box>
+
+      <Button variant="contained" component={Link} to={`/newstudent`}>
+        Add New Student
+      </Button>
     </div>
   );
 };
