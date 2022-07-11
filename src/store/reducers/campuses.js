@@ -16,7 +16,7 @@ const allCampuses = (state = [], action) => {
     case at.ADD_CAMPUS:
       return [...state, action.payload];
     case at.DELETE_CAMPUS:
-      return state.filter((campus) => campus.id !== action.payload.id);
+      return state.filter((campus) => campus.id !== action.payload);
     case at.EDIT_CAMPUS:
       return state.map((campus) =>
         campus.id === action.payload.id ? action.payload : campus

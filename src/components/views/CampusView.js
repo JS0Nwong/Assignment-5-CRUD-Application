@@ -31,14 +31,6 @@ const CampusView = (props) => {
         <Typography variant="h6" paragraph>
           {campus.description}
         </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Button variant="outlined" sx={{ mr: "2em" }}>
-            Delete
-          </Button>
-          <Button variant="outlined" sx={{ ml: "2em" }}>
-            Edit
-          </Button>
-        </Box>
 
         <Typography variant="h5" component="h2" mt="3em">
           Students
@@ -53,7 +45,9 @@ const CampusView = (props) => {
                 sx={{ minWidth: "100px" }}
               >
                 <CardActionArea to={`/student/${student.id}`} component={Link}>
-                  <CardContent sx={{ padding: "1.25em" }}>{name}</CardContent>
+                  <CardContent sx={{ padding: "1.25em" }}>
+                    <Box sx={{ width: "100%" }}>{name}</Box>
+                  </CardContent>
                 </CardActionArea>
               </BskCard>
             );

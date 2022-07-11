@@ -18,11 +18,6 @@ class AllCampusesContainer extends Component {
     this.props.fetchAllCampuses();
   }
 
-  updateOnDelete = async (campusId) => {
-    await this.props.deleteCampus(campusId);
-    this.props.fetchAllCampuses();
-  };
-
   // Render All Campuses view by passing all campuses data as props to the corresponding View component
   render() {
     return (
@@ -32,7 +27,7 @@ class AllCampusesContainer extends Component {
         </Heading>
         <AllCampusesView
           allCampuses={this.props.allCampuses}
-          deleteCampus={this.updateOnDelete}
+          deleteCampus={this.props.deleteCampus}
         />
       </div>
     );
