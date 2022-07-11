@@ -6,18 +6,20 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Heading from "../Heading";
-import { Typography, Button } from "@mui/material";
+import {
+  Typography,
+  Button,
+  Box,
+  CardActionArea,
+  CardContent,
+} from "@mui/material";
+import { BskCard } from "../BskCard";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
     return (
-      <>
-        <Heading component="h1" variant="h4">
-          All Campuses
-        </Heading>
-
+      <div>
         <Typography paragraph sx={{ m: "2em" }}>
           There are currently no campuses
         </Typography>
@@ -29,32 +31,43 @@ const AllCampusesView = (props) => {
         >
           Add New Campus
         </Button>
-      </>
+      </div>
     );
   }
 
   // If there is at least one campus, render All Campuses view
   return (
     <div>
-      <h1>All Campuses</h1>
+      <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+        {props.allCampuses.map((campus) => (
+          <BskCard variant="outlined" key={campus.id}>
+            <CardActionArea component={Link} to={`/campus/${campus.id}`}>
+              <CardContent sx={{ padding: "1.25em" }}>
+                <h2>{campus.name}</h2>
 
-      {props.allCampuses.map((campus) => (
-        <div key={campus.id}>
-          <Link to={`/campus/${campus.id}`}>
-            <h2>{campus.name}</h2>
-          </Link>
-          <h4>campus id: {campus.id}</h4>
-          <p>{campus.address}</p>
-          <p>{campus.description}</p>
-          <hr />
-        </div>
-      ))}
-      <br />
-      <Link to={`/newcampus`}>
-        <button>Add New Campus</button>
-      </Link>
-      <br />
-      <br />
+                <Typography variant="h6" component="h4">
+                  Campus ID: {campus.id}
+                </Typography>
+                <Typography variant="h6" component="p" fontSize="17px">
+                  {campus.address}
+                </Typography>
+                <Typography component="p" fontSize="15px" m="0.5em">
+                  {campus.description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </BskCard>
+        ))}
+      </Box>
+
+      <Button
+        variant="contained"
+        component={Link}
+        to="/newcampus"
+        sx={{ m: "2.5em" }}
+      >
+        Add New Campus
+      </Button>
     </div>
   );
 };

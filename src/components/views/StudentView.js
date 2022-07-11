@@ -1,3 +1,5 @@
+import { Box, Typography } from "@mui/material";
+
 /*==================================================
 StudentView.js
 
@@ -10,8 +12,17 @@ const StudentView = (props) => {
   // Render a single Student view
   return (
     <div>
-      <h1>{student.firstname + " " + student.lastname}</h1>
-      <h3>{student.campus.name}</h3>
+      <Box>
+        <Typography component="h1" variant="h4" m="0.5em">
+          {student.firstname + " " + student.lastname}
+        </Typography>
+
+        <Typography component="h2" variant="h5" m="0.5em">
+          {student.campus.name}
+        </Typography>
+      </Box>
+      <h1></h1>
+      <h3></h3>
     </div>
   );
 };

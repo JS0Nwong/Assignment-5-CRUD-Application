@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchAllCampusesThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
+import Heading from "../Heading";
 
 class AllCampusesContainer extends Component {
   // Get all campuses data from back-end database
@@ -21,6 +22,9 @@ class AllCampusesContainer extends Component {
   render() {
     return (
       <div>
+        <Heading component="h1" variant="h4">
+          All Campuses
+        </Heading>
         <AllCampusesView allCampuses={this.props.allCampuses} />
       </div>
     );

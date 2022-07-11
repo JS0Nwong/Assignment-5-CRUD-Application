@@ -5,8 +5,14 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
-import Heading from "../Heading";
+import {
+  Typography,
+  Button,
+  Box,
+  CardActionArea,
+  CardContent,
+} from "@mui/material";
+import { BskCard } from "../BskCard";
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -14,9 +20,6 @@ const AllStudentsView = (props) => {
   if (!students.length) {
     return (
       <>
-        <Heading component="h1" variant="h4">
-          All Students
-        </Heading>
         <Typography paragraph sx={{ m: "2em" }}>
           There are currently no students
         </Typography>
@@ -35,26 +38,36 @@ const AllStudentsView = (props) => {
   // If there is at least one student, render All Students view
   return (
     <div>
-      <h1>All Students</h1>
+      <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+        {students.map((student) => {
+          let name = student.firstname + " " + student.lastname;
+          return (
+            <BskCard variant="outlined" key={student.id}>
+              <CardActionArea component={Link} to={`/student/${student.id}`}>
+                <CardContent sx={{ padding: "1.25em" }}>
+                  <h2>{name}</h2>
 
-      {students.map((student) => {
-        let name = student.firstname + " " + student.lastname;
-        return (
-          <div key={student.id}>
-            <Link to={`/student/${student.id}`}>
-              <h2>{name}</h2>
-            </Link>
-            <button onClick={() => deleteStudent(student.id)}>Delete</button>
-            <hr />
-          </div>
-        );
-      })}
-      <br />
-      <Link to={`/newstudent`}>
-        <button>Add New Student</button>
-      </Link>
-      <br />
-      <br />
+                  <Button
+                    variant="contained"
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      deleteStudent(student.id);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </CardContent>
+              </CardActionArea>
+            </BskCard>
+          );
+        })}
+      </Box>
+
+      <Button variant="contained" component={Link} to={`/newstudent`}>
+        Add New Student
+      </Button>
     </div>
   );
 };

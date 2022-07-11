@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { fetchAllStudentsThunk, deleteStudentThunk } from "../../store/thunks";
 
 import AllStudentsView from "../views/AllStudentsView";
+import Heading from "../Heading";
 
 class AllStudentsContainer extends Component {
   // Get all students data from back-end database
@@ -22,6 +23,9 @@ class AllStudentsContainer extends Component {
   render() {
     return (
       <div>
+        <Heading component="h1" variant="h4">
+          All Students
+        </Heading>
         <AllStudentsView
           students={this.props.allStudents}
           deleteStudent={this.props.deleteStudent}
