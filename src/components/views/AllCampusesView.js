@@ -54,6 +54,17 @@ const AllCampusesView = (props) => {
                 <Typography component="p" fontSize="15px" m="0.5em">
                   {campus.description}
                 </Typography>
+
+                <Button
+                  variant="outlined"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    props.deleteCampus(campus.id);
+                  }}
+                >
+                  Delete
+                </Button>
               </CardContent>
             </CardActionArea>
           </BskCard>
