@@ -31,9 +31,13 @@ const CampusView = (props) => {
         <Typography variant="h6" paragraph>
           {campus.description}
         </Typography>
-        <Box>
-          <Button variant="outlined">Delete</Button>
-          <Button variant="outlined">Edit</Button>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Button variant="outlined" sx={{ mr: "2em" }}>
+            Delete
+          </Button>
+          <Button variant="outlined" sx={{ ml: "2em" }}>
+            Edit
+          </Button>
         </Box>
 
         <Typography variant="h5" component="h2" mt="3em">
