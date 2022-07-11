@@ -10,7 +10,6 @@ import {
   Typography,
   Button,
   Box,
-  Card,
   CardActionArea,
   CardContent,
 } from "@mui/material";
@@ -39,7 +38,7 @@ const AllCampusesView = (props) => {
   // If there is at least one campus, render All Campuses view
   return (
     <div>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {props.allCampuses.map((campus) => (
           <BskCard variant="outlined" key={campus.id}>
             <CardActionArea component={Link} to={`/campus/${campus.id}`}>
@@ -49,10 +48,10 @@ const AllCampusesView = (props) => {
                 <Typography variant="h6" component="h4">
                   Campus ID: {campus.id}
                 </Typography>
-                <Typography variant="h6" component="p" fontSize="16px">
+                <Typography variant="h6" component="p" fontSize="17px">
                   {campus.address}
                 </Typography>
-                <Typography variant="h6" component="p" fontSize="16px">
+                <Typography component="p" fontSize="15px" m="0.5em">
                   {campus.description}
                 </Typography>
               </CardContent>

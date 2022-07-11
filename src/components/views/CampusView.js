@@ -4,13 +4,7 @@ CampusView.js
 The Views component is responsible for rendering web page with data provided by the corresponding Container component.
 It constructs a React component to display a single campus and its students (if any).
 ================================================== */
-import {
-  Box,
-  CardActionArea,
-  CardContent,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Box, CardActionArea, CardContent, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BskCard } from "../BskCard";
 
@@ -38,7 +32,11 @@ const CampusView = (props) => {
           {campus.students.map((student) => {
             let name = student.firstname + " " + student.lastname;
             return (
-              <BskCard key={student.id} variant="outlined">
+              <BskCard
+                key={student.id}
+                variant="outlined"
+                sx={{ minWidth: "100px" }}
+              >
                 <CardActionArea to={`/student/${student.id}`} component={Link}>
                   <CardContent sx={{ padding: "1.25em" }}>{name}</CardContent>
                 </CardActionArea>

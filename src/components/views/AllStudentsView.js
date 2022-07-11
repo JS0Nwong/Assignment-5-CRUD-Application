@@ -9,7 +9,6 @@ import {
   Typography,
   Button,
   Box,
-  Card,
   CardActionArea,
   CardContent,
 } from "@mui/material";
@@ -39,7 +38,7 @@ const AllStudentsView = (props) => {
   // If there is at least one student, render All Students view
   return (
     <div>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {students.map((student) => {
           let name = student.firstname + " " + student.lastname;
           return (
@@ -50,7 +49,12 @@ const AllStudentsView = (props) => {
 
                   <Button
                     variant="contained"
-                    onClick={() => deleteStudent(student)}
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      deleteStudent(student.id);
+                    }}
                   >
                     Delete
                   </Button>
