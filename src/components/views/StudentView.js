@@ -21,8 +21,6 @@ const StudentView = (props) => {
           {student.campus.name}
         </Typography>
       </Box>
-      <h1></h1>
-      <h3></h3>
     </div>
   );
 };
