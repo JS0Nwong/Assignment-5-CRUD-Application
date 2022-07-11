@@ -8,7 +8,7 @@ If needed, it also defines the component's "connect" function.
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllCampusesThunk } from "../../store/thunks";
+import { deleteCampusThunk, fetchAllCampusesThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 import Heading from "../Heading";
 
@@ -18,6 +18,11 @@ class AllCampusesContainer extends Component {
     this.props.fetchAllCampuses();
   }
 
+  updateOnDelete = async (campusId) => {
+    await this.props.deleteCampus(campusId);
+    this.props.fetchAllCampuses();
+  };
+
   // Render All Campuses view by passing all campuses data as props to the corresponding View component
   render() {
     return (
@@ -25,7 +30,10 @@ class AllCampusesContainer extends Component {
         <Heading component="h1" variant="h4">
           All Campuses
         </Heading>
-        <AllCampusesView allCampuses={this.props.allCampuses} />
+        <AllCampusesView
+          allCampuses={this.props.allCampuses}
+          deleteCampus={this.updateOnDelete}
+        />
       </div>
     );
   }
@@ -44,6 +52,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
+    deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
   };
 };
 

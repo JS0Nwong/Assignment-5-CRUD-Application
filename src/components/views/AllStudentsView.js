@@ -48,7 +48,7 @@ const AllStudentsView = (props) => {
                   <h2>{name}</h2>
 
                   <Button
-                    variant="contained"
+                    variant="outlined"
                     onMouseDown={(e) => e.stopPropagation()}
                     onClick={(e) => {
                       e.stopPropagation();

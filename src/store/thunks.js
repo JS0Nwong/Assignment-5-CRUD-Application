@@ -44,7 +44,7 @@ export const editCampusThunk = (campus) => async (dispatch) => {
 
 export const deleteCampusThunk = (campusId) => async (dispatch) => {
   try {
-    await axios.delete(`/api/campus/${campusId}`);
+    await axios.delete(`/api/campuses/${campusId}`);
 
     dispatch(ac.deleteCampus(campusId));
   } catch (err) {
