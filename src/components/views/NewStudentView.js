@@ -5,7 +5,14 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the new student page.
 ================================================== */
 
-import { Typography, Button, styled, TextField, Box } from "@mui/material";
+import {
+  Typography,
+  Button,
+  styled,
+  TextField,
+  Box,
+  Grid,
+} from "@mui/material";
 
 const FormContainer = styled("div")(() => ({
   display: "flex",
@@ -13,7 +20,7 @@ const FormContainer = styled("div")(() => ({
 }));
 
 const StudentInfoField = styled(TextField)(() => ({
-  margin: "2em",
+  margin: "1em",
 }));
 
 const NewStudentView = (props) => {
@@ -30,6 +37,7 @@ const NewStudentView = (props) => {
           m: "2em",
           p: "2em",
           minWidth: "260px",
+          maxWidth: "400px",
           boxShadow:
             "rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px",
         }}
@@ -49,51 +57,99 @@ const NewStudentView = (props) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            padding: "2em",
           }}
         >
-          <StudentInfoField
-            variant="outlined"
-            label="First Name"
-            name="firstname"
-            InputLabelProps={{ required: false }}
-            inputProps={{
-              pattern: "[a-zA-Z]+",
-              title: "Only alphabetic characters are allowed.",
-            }}
-            onChange={handleChange}
-            required
-          />
-          <StudentInfoField
-            variant="outlined"
-            label="Last Name"
-            name="lastname"
-            inputProps={{
-              pattern: "[a-zA-Z]+",
-              title: "Only alphabetic characters are allowed.",
-            }}
-            InputLabelProps={{ required: false }}
-            onChange={handleChange}
-            required
-          />
-          <StudentInfoField
-            variant="outlined"
-            type="number"
-            name="campusId"
-            label="Campus ID"
-            InputLabelProps={{ required: false }}
-            onChange={handleChange}
-            sx={{
-              "[type=number]::webkit-outer-spin-button": {
-                WebkitAppearance: "none",
-              },
-              "[type=number]::-webkit-inner-spin-button": {
-                WebkitAppearance: "none",
-              },
-            }}
-            required
-          />
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <StudentInfoField
+                variant="outlined"
+                label="First Name"
+                name="firstname"
+                InputLabelProps={{ required: false }}
+                inputProps={{
+                  pattern: "[a-zA-Z]+",
+                  title: "Only alphabetic characters are allowed.",
+                }}
+                onChange={handleChange}
+                required
+              />
+            </Grid>
 
-          <Button type="submit" variant="contained">
+            <Grid item xs={6}>
+              <StudentInfoField
+                variant="outlined"
+                label="Last Name"
+                name="lastname"
+                inputProps={{
+                  pattern: "[a-zA-Z]+",
+                  title: "Only alphabetic characters are allowed.",
+                }}
+                InputLabelProps={{ required: false }}
+                onChange={handleChange}
+                required
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <StudentInfoField
+                variant="outlined"
+                label="Email"
+                name="email"
+                type="email"
+                InputLabelProps={{ required: false }}
+                onChange={handleChange}
+                required
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <StudentInfoField
+                variant="outlined"
+                type="number"
+                name="campusId"
+                label="Campus ID"
+                InputLabelProps={{ required: false }}
+                onChange={handleChange}
+                sx={{
+                  "[type=number]::webkit-outer-spin-button": {
+                    WebkitAppearance: "none",
+                  },
+                  "[type=number]::-webkit-inner-spin-button": {
+                    WebkitAppearance: "none",
+                  },
+                }}
+                required
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <StudentInfoField
+                variant="outlined"
+                label="GPA"
+                name="gpa"
+                type="number"
+                InputLabelProps={{ required: false }}
+                sx={{
+                  "[type=number]::webkit-outer-spin-button": {
+                    WebkitAppearance: "none",
+                  },
+                  "[type=number]::-webkit-inner-spin-button": {
+                    WebkitAppearance: "none",
+                  },
+                  width: "50%",
+                }}
+                inputProps={{
+                  min: "0",
+                  max: "4",
+                  step: "0.01",
+                }}
+                required
+              />
+            </Grid>
+          </Grid>
+
+          <Button type="submit" variant="contained" sx={{ mt: "2em" }}>
             Submit
           </Button>
         </form>

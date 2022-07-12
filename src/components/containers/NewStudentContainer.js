@@ -19,6 +19,10 @@ class NewStudentContainer extends Component {
     this.state = {
       firstname: "",
       lastname: "",
+      email: "",
+      imageUrl:
+        "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-11.jpg",
+      gpa: null,
       campusId: null,
       redirect: false,
       redirectId: null,
