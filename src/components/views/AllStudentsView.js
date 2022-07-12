@@ -11,6 +11,7 @@ import {
   Box,
   CardActionArea,
   CardContent,
+  CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
 
@@ -44,6 +45,12 @@ const AllStudentsView = (props) => {
           return (
             <BskCard variant="outlined" key={student.id}>
               <CardActionArea component={Link} to={`/student/${student.id}`}>
+                <CardMedia
+                  component="img"
+                  height="150"
+                  image={student.imageUrl}
+                />
+
                 <CardContent sx={{ padding: "1.25em" }}>
                   <h2>{name}</h2>
 
