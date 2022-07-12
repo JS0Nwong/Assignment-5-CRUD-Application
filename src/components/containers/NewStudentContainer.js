@@ -20,8 +20,7 @@ class NewStudentContainer extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      imageUrl:
-        "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-11.jpg",
+      imageUrl: "",
       gpa: null,
       campusId: null,
       redirect: false,

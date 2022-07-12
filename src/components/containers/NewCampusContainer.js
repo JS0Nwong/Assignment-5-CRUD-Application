@@ -11,8 +11,7 @@ class NewCampusContainer extends Component {
       campusName: "",
       address: "",
       description: "",
-      imageUrl:
-        "https://thumbs.dreamstime.com/b/school-building-icon-thin-line-blue-fill-design-vector-illustration-148829368.jpg",
+      imageUrl: "",
       redirect: false,
       redirectId: null,
     };
