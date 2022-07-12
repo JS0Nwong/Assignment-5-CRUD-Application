@@ -13,6 +13,16 @@ const StudentView = (props) => {
   return (
     <div>
       <Box>
+        <Box
+          component="img"
+          sx={{
+            height: 300,
+            width: 350,
+          }}
+          src={student.imageUrl}
+          alt="student photo"
+        />
+
         <Typography component="h1" variant="h4" m="0.5em">
           {student.firstname + " " + student.lastname}
         </Typography>

@@ -49,6 +49,7 @@ const AllStudentsView = (props) => {
                   component="img"
                   height="150"
                   image={student.imageUrl}
+                  alt="student photo"
                 />
 
                 <CardContent sx={{ padding: "1.25em" }}>
