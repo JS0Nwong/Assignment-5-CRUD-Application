@@ -12,6 +12,7 @@ import {
   Box,
   CardActionArea,
   CardContent,
+  CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
 
@@ -42,8 +43,17 @@ const AllCampusesView = (props) => {
         {props.allCampuses.map((campus) => (
           <BskCard variant="outlined" key={campus.id}>
             <CardActionArea component={Link} to={`/campus/${campus.id}`}>
-              <CardContent sx={{ padding: "1.25em" }}>
-                <h2>{campus.name}</h2>
+              <CardMedia
+                component="img"
+                height="auto"
+                image={campus.imageUrl}
+                alt="university photo"
+              />
+
+              <CardContent>
+                <Typography variant="h4" component="h2">
+                  {campus.name}
+                </Typography>
 
                 <Typography variant="h6" component="h4">
                   Campus ID: {campus.id}
