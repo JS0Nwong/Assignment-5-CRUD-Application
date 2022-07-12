@@ -106,6 +106,40 @@ const NewStudentView = (props) => {
             <Grid item xs={6}>
               <StudentInfoField
                 variant="outlined"
+                label="GPA"
+                name="gpa"
+                type="number"
+                InputLabelProps={{ required: false }}
+                sx={{
+                  "[type=number]::webkit-outer-spin-button": {
+                    WebkitAppearance: "none",
+                  },
+                  "[type=number]::-webkit-inner-spin-button": {
+                    WebkitAppearance: "none",
+                  },
+                  width: "78%",
+                }}
+                inputProps={{
+                  min: "0",
+                  max: "4",
+                  step: "0.01",
+                }}
+                required
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <StudentInfoField
+                variant="outlined"
+                type="url"
+                name="imageUrl"
+                label="Image URL"
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <StudentInfoField
+                variant="outlined"
                 type="number"
                 name="campusId"
                 label="Campus ID"
@@ -118,31 +152,6 @@ const NewStudentView = (props) => {
                   "[type=number]::-webkit-inner-spin-button": {
                     WebkitAppearance: "none",
                   },
-                }}
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <StudentInfoField
-                variant="outlined"
-                label="GPA"
-                name="gpa"
-                type="number"
-                InputLabelProps={{ required: false }}
-                sx={{
-                  "[type=number]::webkit-outer-spin-button": {
-                    WebkitAppearance: "none",
-                  },
-                  "[type=number]::-webkit-inner-spin-button": {
-                    WebkitAppearance: "none",
-                  },
-                  width: "50%",
-                }}
-                inputProps={{
-                  min: "0",
-                  max: "4",
-                  step: "0.01",
                 }}
                 required
               />
