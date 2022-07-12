@@ -21,7 +21,7 @@ const StudentView = (props) => {
         <Typography component="h2" variant="h5" m="0.5em">
           {student.campus.name}
         </Typography>
-        
+        <br/><br/><br/><br/>
           <Button
             variant="outlined"
             onMouseDown={(e) => e.stopPropagation()}
@@ -32,7 +32,7 @@ const StudentView = (props) => {
             }}
           >
             <Link to="/students" style={{ textDecoration: 'none'}}>
-            Delete
+            Delete Student
             </Link>
           </Button>
         
