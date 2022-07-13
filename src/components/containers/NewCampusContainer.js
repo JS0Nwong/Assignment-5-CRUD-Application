@@ -11,7 +11,7 @@ class NewCampusContainer extends Component {
       campusName: "",
       address: "",
       description: "",
-      imageUrl: null,
+      imageUrl: "",
       redirect: false,
       redirectId: null,
     };
@@ -20,12 +20,18 @@ class NewCampusContainer extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newCampus = await this.props.addCampus({
+    const campus = {
       name: this.state.campusName,
       address: this.state.address,
       description: this.state.description,
       imageUrl: this.state.imageUrl,
-    });
+    };
+
+    if (this.state.imageUrl === "") {
+      delete campus.imageUrl;
+    }
+
+    const newCampus = await this.props.addCampus(campus);
 
     this.setState({
       campusName: "",
