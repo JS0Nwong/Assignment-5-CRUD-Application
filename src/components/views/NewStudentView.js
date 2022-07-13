@@ -134,6 +134,7 @@ const NewStudentView = (props) => {
                 type="url"
                 name="imageUrl"
                 label="Image URL"
+                onChange={handleChange}
               />
             </Grid>
 

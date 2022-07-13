@@ -71,6 +71,7 @@ const NewCampusView = (props) => {
               type="url"
               label="Image URL"
               name="imageUrl"
+              onChange={handleChange}
             />
 
             <CampusInfoField
