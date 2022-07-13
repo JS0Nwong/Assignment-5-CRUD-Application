@@ -19,6 +19,9 @@ class NewStudentContainer extends Component {
     this.state = {
       firstname: "",
       lastname: "",
+      email: "",
+      imageUrl: "",
+      gpa: null,
       campusId: null,
       redirect: false,
       redirectId: null,

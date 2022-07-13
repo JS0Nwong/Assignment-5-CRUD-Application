@@ -11,6 +11,7 @@ class NewCampusContainer extends Component {
       campusName: "",
       address: "",
       description: "",
+      imageUrl: "",
       redirect: false,
       redirectId: null,
     };

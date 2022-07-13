@@ -6,7 +6,7 @@ const FormContainer = styled("div")(() => ({
 }));
 
 const CampusInfoField = styled(TextField)(() => ({
-  margin: "2em",
+  margin: "1em",
 }));
 
 const NewCampusView = (props) => {
@@ -59,7 +59,20 @@ const NewCampusView = (props) => {
               required
             />
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <CampusInfoField
+              variant="outlined"
+              type="url"
+              label="Image URL"
+              name="imageUrl"
+            />
+
             <CampusInfoField
               variant="outlined"
               name="description"

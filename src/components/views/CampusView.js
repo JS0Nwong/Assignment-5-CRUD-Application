@@ -22,7 +22,20 @@ const CampusView = (props) => {
   return (
     <div>
       <Box>
-        <Typography variant="h3" component="h1" m="0.75em">
+        <Box
+          component="img"
+          sx={{
+            height: 233,
+            width: 350,
+            maxHeight: { xs: 233, md: 167 },
+            maxWidth: { xs: 350, md: 250 },
+            m: 3,
+          }}
+          src={campus.imageUrl}
+          alt="university image"
+        />
+
+        <Typography variant="h3" component="h1">
           {campus.name}
         </Typography>
         <Typography variant="h6" paragraph>
