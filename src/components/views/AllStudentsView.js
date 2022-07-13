@@ -46,7 +46,11 @@ const AllStudentsView = (props) => {
           let name = student.firstname + " " + student.lastname;
           return (
             <BskCard variant="outlined" key={student.id}>
-              <CardActionArea component={Link} to={`/student/${student.id}`}>
+              <CardActionArea
+                component={Link}
+                to={`/student/${student.id}`}
+                sx={{ height: "100%" }}
+              >
                 <CardMedia
                   component="img"
                   height="150"

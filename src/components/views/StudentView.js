@@ -10,8 +10,6 @@ It constructs a React component to display the single student view page.
 const StudentView = (props) => {
   const { student } = props;
 
-  console.log(student.gpa);
-
   // Render a single Student view
   return (
     <div>

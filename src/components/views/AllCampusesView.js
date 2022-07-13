@@ -44,7 +44,11 @@ const AllCampusesView = (props) => {
       <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {props.allCampuses.map((campus) => (
           <BskCard variant="outlined" key={campus.id}>
-            <CardActionArea component={Link} to={`/campus/${campus.id}`}>
+            <CardActionArea
+              component={Link}
+              to={`/campus/${campus.id}`}
+              sx={{ height: "100%" }}
+            >
               <CardMedia
                 component="img"
                 height="150"

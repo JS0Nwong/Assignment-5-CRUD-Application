@@ -31,6 +31,7 @@ class EditStudentContainer extends Component {
       imageUrl: this.state.imageUrl,
       gpa: this.state.gpa,
       campusId: this.state.campusId,
+      id: this.props.student.id,
     };
 
     if (this.state.imageUrl === "") {

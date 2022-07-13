@@ -21,6 +21,7 @@ class AllStudentsContainer extends Component {
 
   // Render All Students view by passing all students data as props to the corresponding View component
   render() {
+    console.log(this.props.allStudents);
     return (
       <div>
         <Heading component="h1" variant="h4">

@@ -35,7 +35,6 @@ class EditCampusContainer extends Component {
       delete campus.imageUrl;
     }
 
-    console.log(campus);
     await this.props.editCampus(campus);
 
     this.setState({

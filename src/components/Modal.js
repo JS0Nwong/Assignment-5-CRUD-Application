@@ -6,25 +6,18 @@ import { connect } from "react-redux";
 import { FaPen } from "react-icons/fa";
 import NewCampusView from "./views/NewCampusView";
 import ClearIcon from "@mui/icons-material/Clear";
+import { NewStudentView } from "./views";
 
-// const style = {
-//   position: "absolute",
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-//   width: 1000,
-//   height: 700,
-//   bgcolor: "background.paper",
-//   border: "1px solid #000",
-//   boxShadow: 24,
-//   p: 4,
-// };
+const editSubmitHelper = (e, closeModal, submitFunc) => {
+  closeModal();
+  submitFunc(e);
+};
 
 const BasicModal = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { handleSubmit, handleChange, itemObj } = props;
+  const { handleSubmit, handleChange, itemObj, flag } = props;
 
   return (
     <div>
@@ -33,7 +26,6 @@ const BasicModal = (props) => {
           e.stopPropagation();
           e.preventDefault();
           handleOpen();
-          // props.editStudent(dbItem.id);
         }}
         variant="outlined"
       >
@@ -60,11 +52,23 @@ const BasicModal = (props) => {
             </Button>
           </Box>
 
-          <NewCampusView
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            campus={itemObj}
-          />
+          {flag === "campus" ? (
+            <NewCampusView
+              handleChange={handleChange}
+              handleSubmit={(e) => {
+                editSubmitHelper(e, handleClose, handleSubmit);
+              }}
+              campus={itemObj}
+            />
+          ) : (
+            <NewStudentView
+              handleChange={handleChange}
+              handleSubmit={(e) => {
+                editSubmitHelper(e, handleClose, handleSubmit);
+              }}
+              student={itemObj}
+            />
+          )}
         </div>
       </Modal>
     </div>
