@@ -2,7 +2,7 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { editStudentThunk } from "../../store/thunks";
 import { Redirect } from "react-router-dom";
-import { BasicModal } from "../Modal";
+import BasicModal from "../Modal";
 
 class EditStudentContainer extends Component {
   constructor() {

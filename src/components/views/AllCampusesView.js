@@ -66,42 +66,22 @@ const AllCampusesView = (props) => {
                 <Typography component="p" fontSize="15px" m="0.5em">
                   {campus.description}
                 </Typography>
-
-                <Button
-                  variant="outlined"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    props.deleteCampus(campus.id);
-                  }}
-                >
-                  <FaTrash />
-                </Button>
-
-                {/* <BasicModal /> */}
-                <EditCampusContainer />
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <Button
+                    variant="outlined"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      props.deleteCampus(campus.id);
+                    }}
+                    sx={{ mr: "2em" }}
+                  >
+                    <FaTrash />
+                  </Button>
+                  <EditCampusContainer />
+                </Box>
               </CardContent>
             </CardActionArea>
-
-            {/* <Button
-              variant="outlined"
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                props.editCampus(campus.id);
-              }}
-              component={() => (
-                <BasicModal
-                  title="Campus"
-                  name={campus.name}
-                  address={campus.address}
-                  description={campus.description}
-                  label="Campus Image URL"
-                />
-              )}
-            >
-              <FaPen />
-            </Button> */}
           </BskCard>
         ))}
       </Box>

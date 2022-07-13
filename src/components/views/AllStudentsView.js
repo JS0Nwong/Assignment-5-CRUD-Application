@@ -15,7 +15,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
-import BasicModal from "../Modal";
+import EditStudentContainer from "../containers/EditStudentContainer";
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -57,37 +57,25 @@ const AllStudentsView = (props) => {
                 <CardContent sx={{ padding: "1.25em" }}>
                   <h2>{name}</h2>
 
-                  <Button
-                    variant="outlined"
-                    onMouseDown={(e) => e.stopPropagation()}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      deleteStudent(student.id);
-                    }}
-                  >
-                    <FaTrash />
-                  </Button>
-                  <BasicModal dbItem={student} />
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Button
+                      variant="outlined"
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        deleteStudent(student.id);
+                      }}
+                      sx={{
+                        mr: "2em",
+                      }}
+                    >
+                      <FaTrash />
+                    </Button>
+                    <EditStudentContainer />
+                  </Box>
                 </CardContent>
               </CardActionArea>
-              {/* <Button
-                variant="outlined"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  props.editStudent(student.id);
-                }}
-                component={() => (
-                  <BasicModal
-                    title="Student"
-                    namefirst={props.firstname}
-                    label="Student Image URL"
-                  />
-                )}
-              >
-                <FaPen />
-              </Button> */}
             </BskCard>
           );
         })}
