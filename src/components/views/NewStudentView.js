@@ -124,7 +124,7 @@ const NewStudentView = (props) => {
                   max: "4",
                   step: "0.01",
                 }}
-                required
+                onChange={handleChange}
               />
             </Grid>
 

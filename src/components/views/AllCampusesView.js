@@ -16,11 +16,9 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
-import { useState } from "react";
 import BasicModal from "../Modal";
 
 const AllCampusesView = (props) => {
-  const { handleSubmit, handleChange } = props;
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
     return (
@@ -77,31 +75,33 @@ const AllCampusesView = (props) => {
                     props.deleteCampus(campus.id);
                   }}
                 >
-                  <FaTrash/>
+                  <FaTrash />
                 </Button>
-
-
               </CardContent>
             </CardActionArea>
 
-            <Button 
-                variant="outlined"
-                onClick={(e) => {
-                  e.stopPropagation(); 
-                  e.preventDefault();
-                  props.editCampus(campus.id);
-                }
-              }
-              component={props => <BasicModal title = "Campus" name = {campus.name} address = {campus.address} description = {campus.description} label = "Campus Image URL" />}
-              >
-              <FaPen/>
+            <Button
+              variant="outlined"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                props.editCampus(campus.id);
+              }}
+              component={() => (
+                <BasicModal
+                  title="Campus"
+                  name={campus.name}
+                  address={campus.address}
+                  description={campus.description}
+                  label="Campus Image URL"
+                />
+              )}
+            >
+              <FaPen />
             </Button>
-
           </BskCard>
         ))}
       </Box>
-
-      
 
       <Button
         variant="contained"

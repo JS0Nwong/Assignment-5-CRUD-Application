@@ -15,7 +15,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
-import { BasicModal } from "../Modal"
+import { BasicModal } from "../Modal";
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -66,22 +66,27 @@ const AllStudentsView = (props) => {
                       deleteStudent(student.id);
                     }}
                   >
-                    <FaTrash/>
+                    <FaTrash />
                   </Button>
                 </CardContent>
               </CardActionArea>
               <Button
-                    variant="outlined"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      props.editStudent(student.id);
-                    }
-                    }
-                    component={props => <BasicModal title = "Student" namefirst = {props.firstname} label = "Student Image URL"/>}
-                  >
-                    <FaPen />
-                  </Button>
+                variant="outlined"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  props.editStudent(student.id);
+                }}
+                component={() => (
+                  <BasicModal
+                    title="Student"
+                    namefirst={props.firstname}
+                    label="Student Image URL"
+                  />
+                )}
+              >
+                <FaPen />
+              </Button>
             </BskCard>
           );
         })}

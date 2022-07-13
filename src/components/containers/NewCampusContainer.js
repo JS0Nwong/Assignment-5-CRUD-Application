@@ -8,7 +8,7 @@ class NewCampusContainer extends Component {
   constructor() {
     super();
     this.state = {
-      campusName: "",
+      name: "",
       address: "",
       description: "",
       imageUrl: "",
@@ -20,12 +20,24 @@ class NewCampusContainer extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newCampus = await this.props.addCampus({ ...this.state });
+    const campus = {
+      name: this.state.name,
+      address: this.state.address,
+      description: this.state.description,
+      imageUrl: this.state.imageUrl,
+    };
+
+    if (this.state.imageUrl === "") {
+      delete campus.imageUrl;
+    }
+
+    const newCampus = await this.props.addCampus(campus);
 
     this.setState({
-      campusName: "",
+      name: "",
       address: "",
       description: "",
+      imageUrl: null,
       redirect: true,
       redirectId: newCampus.id,
     });
