@@ -42,6 +42,9 @@ class NewStudentContainer extends Component {
     let student = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
+      email: this.state.email,
+      imageUrl: this.state.imageUrl,
+      gpa: this.state.gpa,
       campusId: this.state.campusId,
     };
 
@@ -52,6 +55,9 @@ class NewStudentContainer extends Component {
     this.setState({
       firstname: "",
       lastname: "",
+      email: "",
+      imageUrl: "",
+      gpa: null,
       campusId: null,
       redirect: true,
       redirectId: newStudent.id,
