@@ -45,6 +45,20 @@ const CampusView = (props) => {
           {campus.description}
         </Typography>
 
+        <Button
+          variant="outlined"
+          onMouseDown={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            props.deleteCampus(campus.id);
+          }}
+        >
+          <Link to="/campuses" style={{ textDecoration: "none" }}>
+            Delete Campus
+          </Link>
+        </Button>
+
         <Typography variant="h5" component="h2" mt="3em">
           Students
         </Typography>
@@ -67,20 +81,6 @@ const CampusView = (props) => {
           })}
         </Box>
       </Box>
-      <br/><br/><br/><br/>
-      <Button
-            variant="outlined"
-            onMouseDown={(e) => e.stopPropagation()}
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              props.deleteCampus(campus.id);
-            }}
-          >
-            <Link to="/campuses" style={{ textDecoration: 'none'}}>
-            Delete Campus
-            </Link>
-          </Button>
     </div>
   );
 };
