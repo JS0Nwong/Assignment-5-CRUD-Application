@@ -10,6 +10,8 @@ It constructs a React component to display the single student view page.
 const StudentView = (props) => {
   const { student } = props;
 
+  console.log(student.gpa);
+
   // Render a single Student view
   return (
     <div>
@@ -28,13 +30,21 @@ const StudentView = (props) => {
           {student.firstname + " " + student.lastname}
         </Typography>
 
-        <Typography component="h2" variant="h5">
+        <Typography component="h5" variant="h5">
           {student.email}
         </Typography>
 
-        <Typography component="h2" variant="h5" m="0.5em">
+        <Typography component="h5" variant="h5" m="0.5em">
           {student.campus.name}
         </Typography>
+        {student.gpa === -1 ? (
+          <></>
+        ) : (
+          <Typography component="h5" variant="h5">
+            GPA: {student.gpa}
+          </Typography>
+        )}
+
         <br />
         <br />
         <br />

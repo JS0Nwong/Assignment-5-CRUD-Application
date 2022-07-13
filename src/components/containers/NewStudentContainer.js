@@ -38,7 +38,6 @@ class NewStudentContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async (event) => {
     event.preventDefault(); // Prevent browser reload/refresh after submit.
-
     let student = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -47,6 +46,14 @@ class NewStudentContainer extends Component {
       gpa: this.state.gpa,
       campusId: this.state.campusId,
     };
+
+    if (this.state.imageUrl === "") {
+      delete student.imageUrl;
+    }
+
+    if (this.state.gpa === null) {
+      delete student.gpa;
+    }
 
     // Add new student in back-end database
     let newStudent = await this.props.addStudent(student);

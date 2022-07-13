@@ -87,7 +87,7 @@ const AllCampusesView = (props) => {
                 e.preventDefault();
                 props.editCampus(campus.id);
               }}
-              component={(props) => (
+              component={() => (
                 <BasicModal
                   title="Campus"
                   name={campus.name}
