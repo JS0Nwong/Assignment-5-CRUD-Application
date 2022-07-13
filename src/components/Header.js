@@ -15,6 +15,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import {FaPen, FaPencilAlt} from "react-icons/fa";
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Group";
 import SchoolIcon from "@mui/icons-material/School";
@@ -128,6 +129,7 @@ export default function Header() {
               <ListItemText primary="All Students" />
             </ListItemButton>
           </ListItem>
+
         </List>
       </Drawer>
       <DrawerHeader />

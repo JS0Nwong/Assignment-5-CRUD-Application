@@ -5,6 +5,7 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
+import { FaTrash, FaPen } from "react-icons/fa";
 import {
   Typography,
   Button,
@@ -14,6 +15,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
+import { BasicModal } from "../Modal"
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -64,10 +66,22 @@ const AllStudentsView = (props) => {
                       deleteStudent(student.id);
                     }}
                   >
-                    Delete
+                    <FaTrash/>
                   </Button>
                 </CardContent>
               </CardActionArea>
+              <Button
+                    variant="outlined"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      props.editStudent(student.id);
+                    }
+                    }
+                    component={props => <BasicModal title = "Student" namefirst = {props.firstname} label = "Student Image URL"/>}
+                  >
+                    <FaPen />
+                  </Button>
             </BskCard>
           );
         })}
