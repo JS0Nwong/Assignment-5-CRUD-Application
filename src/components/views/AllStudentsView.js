@@ -15,7 +15,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
-import { BasicModal } from "../Modal";
+import BasicModal from "../Modal";
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -68,9 +68,10 @@ const AllStudentsView = (props) => {
                   >
                     <FaTrash />
                   </Button>
+                  <BasicModal dbItem={student} />
                 </CardContent>
               </CardActionArea>
-              <Button
+              {/* <Button
                 variant="outlined"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -86,7 +87,7 @@ const AllStudentsView = (props) => {
                 )}
               >
                 <FaPen />
-              </Button>
+              </Button> */}
             </BskCard>
           );
         })}

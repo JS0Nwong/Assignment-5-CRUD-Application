@@ -2,6 +2,8 @@ import * as React from "react";
 import Modal from "@mui/material/Modal";
 import { Box, TextField, Typography, Button, styled } from "@mui/material";
 import { editCampusThunk, editStudentThunk } from "../store/thunks";
+import { connect } from "react-redux";
+import { FaPen } from "react-icons/fa";
 
 const style = {
   position: "absolute",
@@ -25,15 +27,25 @@ const CampusInfoField = styled(TextField)(() => ({
   margin: "2em",
 }));
 
-export const BasicModal = (props) => {
+const BasicModal = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { handleSubmit, handleChange } = props;
+  const { handleSubmit, handleChange, dbItem } = props;
 
   return (
     <div>
-      <Button onClick={handleOpen}>Edit Details</Button>
+      <Button
+        onClick={(e) => {
+          handleOpen();
+          e.stopPropagation();
+          e.preventDefault();
+          props.editStudent(dbItem.id);
+        }}
+        variant="outlined"
+      >
+        <FaPen />
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -107,4 +119,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default BasicModal;
+export default connect(null, mapDispatch)(BasicModal);

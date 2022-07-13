@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { editStudentThunk } from "../../store/thunks";
-import { EditStudentView } from "../views";
 import { Redirect } from "react-router-dom";
+import { BasicModal } from "../Modal";
 
 class EditStudentContainer extends Component {
   constructor() {
@@ -23,18 +23,13 @@ class EditStudentContainer extends Component {
   }
 
   render() {
-    if(this.state.redirect) {
-      return (<Redirect to={`/student/${this.state.redirectId}`}/>)
-    }
+    // if(this.state.redirect) {
+    //   return (<Redirect to={`/student/${this.state.redirectId}`}/>)
+    // }
     return (
-      <EditStudentView 
-        student = {this.props.student}
-        editStudent = {this.props.editStudent}
-        deleteStudent = {this.props.deleteStudent}
-        fetchStudent = {this.props.fetchStudent}
-        handleChange = {this.handleChange} 
-        handleSubmit = {this.handleSubmit}      
-      />
+      <div>
+        <BasicModal />
+      </div>
     );
   }
 }

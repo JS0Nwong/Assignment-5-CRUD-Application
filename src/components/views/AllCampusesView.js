@@ -16,7 +16,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
-import BasicModal from "../Modal";
+import EditCampusContainer from "../containers/EditCampusContainer";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
@@ -47,7 +47,7 @@ const AllCampusesView = (props) => {
             <CardActionArea component={Link} to={`/campus/${campus.id}`}>
               <CardMedia
                 component="img"
-                height="auto"
+                height="150"
                 image={campus.imageUrl}
                 alt="university photo"
               />
@@ -77,10 +77,13 @@ const AllCampusesView = (props) => {
                 >
                   <FaTrash />
                 </Button>
+
+                {/* <BasicModal /> */}
+                <EditCampusContainer />
               </CardContent>
             </CardActionArea>
 
-            <Button
+            {/* <Button
               variant="outlined"
               onClick={(e) => {
                 e.stopPropagation();
@@ -98,7 +101,7 @@ const AllCampusesView = (props) => {
               )}
             >
               <FaPen />
-            </Button>
+            </Button> */}
           </BskCard>
         ))}
       </Box>
