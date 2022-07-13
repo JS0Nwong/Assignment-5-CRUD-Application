@@ -1,7 +1,9 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { editCampus } from "../../store/actions/actionCreators";
-import { editCampusThunk } from "../../store/thunks";
+import { editCampusThunk, fetchCampusThunk } from "../../store/thunks";
+import { EditCampusView } from "../views";
+import { Redirect } from "react-router-dom";
+import Heading from "../Heading";
 
 class EditCampusContainer extends Component {
   constructor() {
@@ -46,7 +48,24 @@ class EditCampusContainer extends Component {
     });
   }
 
-  render() {}
+  render() {
+    if(this.state.redirect) {
+      return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
+    }
+    return (
+      <div>
+        <Heading>Edit Campus</Heading> 
+          <EditCampusView 
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          campus={this.props.campus}
+          editCampus={this.props.editCampus}
+          fetchCampus={this.props.fetchCampus}
+        />
+      </div>
+
+    );
+  }
 }
 
 const mapDispatch = (dispatch) => {

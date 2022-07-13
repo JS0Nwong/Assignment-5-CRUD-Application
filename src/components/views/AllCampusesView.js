@@ -6,16 +6,22 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { FaTrash, FaPen } from "react-icons/fa";
 import {
   Typography,
   Button,
   Box,
   CardActionArea,
   CardContent,
+  styled,
+  TextField,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
+import { useState } from "react";
+import BasicModal from "../Modal";
 
 const AllCampusesView = (props) => {
+  const { handleSubmit, handleChange } = props;
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
     return (
@@ -63,13 +69,31 @@ const AllCampusesView = (props) => {
                     props.deleteCampus(campus.id);
                   }}
                 >
-                  Delete
+                  <FaTrash/>
                 </Button>
+
+
               </CardContent>
             </CardActionArea>
+
+            <Button 
+                variant="outlined"
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  e.preventDefault();
+                  props.editCampus(campus.id);
+                }
+              }
+              component={props => <BasicModal title = "Campus" name = {campus.name} address = {campus.address} description = {campus.description} label = "Campus Image URL" />}
+              >
+              <FaPen/>
+            </Button>
+
           </BskCard>
         ))}
       </Box>
+
+      
 
       <Button
         variant="contained"
