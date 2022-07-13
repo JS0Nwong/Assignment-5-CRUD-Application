@@ -8,7 +8,7 @@ class NewCampusContainer extends Component {
   constructor() {
     super();
     this.state = {
-      campusName: "",
+      name: "",
       address: "",
       description: "",
       imageUrl: "",
@@ -21,7 +21,7 @@ class NewCampusContainer extends Component {
     e.preventDefault();
 
     const campus = {
-      name: this.state.campusName,
+      name: this.state.name,
       address: this.state.address,
       description: this.state.description,
       imageUrl: this.state.imageUrl,
@@ -34,7 +34,7 @@ class NewCampusContainer extends Component {
     const newCampus = await this.props.addCampus(campus);
 
     this.setState({
-      campusName: "",
+      name: "",
       address: "",
       description: "",
       imageUrl: null,
