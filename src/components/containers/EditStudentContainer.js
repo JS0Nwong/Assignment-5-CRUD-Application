@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { editStudentThunk } from "../../store/thunks";
-import { Redirect } from "react-router-dom";
 import BasicModal from "../Modal";
 
 class EditStudentContainer extends Component {
@@ -10,25 +9,61 @@ class EditStudentContainer extends Component {
     this.state = {
       firstname: "",
       lastname: "",
-      redirect: false,
-      redirectId: null,
+      email: "",
+      imageUrl: "",
+      gpa: null,
+      campusId: null,
     };
   }
 
-  componentWillUnmount() {
+  handleChange = (event) => {
     this.setState({
-      redirect: false,
-      redirectId: null,
+      [event.target.name]: event.target.value,
     });
-  }
+  };
+
+  handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent browser reload/refresh after submit.
+    let student = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      imageUrl: this.state.imageUrl,
+      gpa: this.state.gpa,
+      campusId: this.state.campusId,
+    };
+
+    if (this.state.imageUrl === "") {
+      delete student.imageUrl;
+    }
+
+    if (this.state.gpa === null) {
+      delete student.gpa;
+    }
+
+    // Add new student in back-end database
+    await this.props.editStudent(student);
+
+    // Update state, and trigger redirect to show the new student
+    this.setState({
+      firstname: "",
+      lastname: "",
+      email: "",
+      imageUrl: "",
+      gpa: null,
+      campusId: null,
+    });
+  };
 
   render() {
-    // if(this.state.redirect) {
-    //   return (<Redirect to={`/student/${this.state.redirectId}`}/>)
-    // }
     return (
       <div>
-        <BasicModal />
+        <BasicModal
+          flag="student"
+          itemObj={this.props.student}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     );
   }

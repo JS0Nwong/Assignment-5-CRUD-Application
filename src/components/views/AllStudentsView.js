@@ -5,7 +5,7 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
-import { FaTrash, FaPen } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import {
   Typography,
   Button,
@@ -72,7 +72,7 @@ const AllStudentsView = (props) => {
                     >
                       <FaTrash />
                     </Button>
-                    <EditStudentContainer />
+                    <EditStudentContainer student={student} />
                   </Box>
                 </CardContent>
               </CardActionArea>

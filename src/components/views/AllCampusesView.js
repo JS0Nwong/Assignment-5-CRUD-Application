@@ -6,7 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { FaTrash, FaPen } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import {
   Typography,
   Button,
@@ -78,7 +78,7 @@ const AllCampusesView = (props) => {
                   >
                     <FaTrash />
                   </Button>
-                  <EditCampusContainer />
+                  <EditCampusContainer campus={campus} />
                 </Box>
               </CardContent>
             </CardActionArea>

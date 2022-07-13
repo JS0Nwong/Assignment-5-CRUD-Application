@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { editCampusThunk } from "../../store/thunks";
-import { Redirect } from "react-router-dom";
 import BasicModal from "../Modal";
 
 class EditCampusContainer extends Component {
@@ -12,8 +11,6 @@ class EditCampusContainer extends Component {
       address: "",
       description: "",
       imageUrl: "",
-      redirect: false,
-      redirectId: null,
     };
   }
 
@@ -31,38 +28,33 @@ class EditCampusContainer extends Component {
       address: this.state.address,
       description: this.state.description,
       imageUrl: this.state.imageUrl,
+      id: this.props.campus.id,
     };
 
     if (this.state.imageUrl === "") {
       delete campus.imageUrl;
     }
 
-    const newCampus = await this.props.addCampus(campus);
+    console.log(campus);
+    await this.props.editCampus(campus);
 
     this.setState({
       name: "",
       address: "",
       description: "",
-      imageUrl: null,
-      redirect: true,
-      redirectId: newCampus.id,
+      imageUrl: "",
     });
   };
 
-  componentWillUnmount() {
-    this.setState({
-      redirect: false,
-      redirectId: null,
-    });
-  }
-
   render() {
-    // if (this.state.redirect) {
-    //   return <Redirect to={`/campus/${this.state.redirectId}`} />;
-    // }
     return (
       <div>
-        <BasicModal editFunc={this.props.editCampus} flag="campus" />
+        <BasicModal
+          flag="campus"
+          itemObj={this.props.campus}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     );
   }

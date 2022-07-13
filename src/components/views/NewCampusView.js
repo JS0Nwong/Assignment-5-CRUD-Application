@@ -85,9 +85,11 @@ const NewCampusView = (props) => {
             />
           </Box>
 
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
+          </Box>
         </form>
       </Box>
     </FormContainer>
