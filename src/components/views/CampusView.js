@@ -39,6 +39,9 @@ const CampusView = (props) => {
         <Typography variant="h3" component="h1">
           {campus.name}
         </Typography>
+        <Typography variant="h6" component="h3" m="0.75em">
+          Campus ID: {campus.id}
+        </Typography>
         <Typography variant="h6" paragraph>
           {campus.address}
         </Typography>
