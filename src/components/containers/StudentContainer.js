@@ -24,7 +24,7 @@ class StudentContainer extends Component {
         <StudentView
           student={this.props.student}
           deleteStudent={this.props.deleteStudent}
-          editStudent={this.props.fetchStudent}
+          refreshStudent={this.props.fetchStudent}
         />
       </div>
     );

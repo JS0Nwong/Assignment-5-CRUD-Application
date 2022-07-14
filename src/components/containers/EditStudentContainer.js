@@ -45,8 +45,8 @@ class EditStudentContainer extends Component {
     // Add new student in back-end database
     await this.props.editStudent(student);
 
-    if (this.props.setCounter !== undefined) {
-      this.props.setCounter(this.props.counter + 1);
+    if (this.props.refreshStudent !== undefined) {
+      this.props.refreshStudent(student.id);
     }
 
     // Update state, and trigger redirect to show the new student

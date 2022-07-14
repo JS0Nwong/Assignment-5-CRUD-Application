@@ -10,7 +10,7 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the single student view page.
 ================================================== */
 const StudentView = (props) => {
-  const { student } = props;
+  const { student, refreshStudent } = props;
 
   // Render a single Student view
   return (
@@ -63,7 +63,10 @@ const StudentView = (props) => {
             <FaTrash />
           </Button>
 
-          <EditStudentContainer student={student} />
+          <EditStudentContainer
+            student={student}
+            refreshStudent={refreshStudent}
+          />
         </Box>
       </Box>
     </div>
