@@ -1,6 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
 import EditStudentContainer from "../containers/EditStudentContainer";
 
 /*==================================================
@@ -56,11 +55,11 @@ const StudentView = (props) => {
               e.preventDefault();
               props.deleteStudent(student.id);
             }}
-            component={Link}
-            to="/students"
             sx={{ mr: "2em" }}
           >
-            <FaTrash />
+            <Link to="/students" style={{ textDecoration: "none" }}>
+              Delete Student
+            </Link>
           </Button>
 
           <EditStudentContainer
