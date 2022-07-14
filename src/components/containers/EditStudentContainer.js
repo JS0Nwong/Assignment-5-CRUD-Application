@@ -1,8 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { editStudentThunk } from "../../store/thunks";
-import { EditStudentView } from "../views";
-import { Redirect } from "react-router-dom";
+import BasicModal from "../Modal";
 
 class EditStudentContainer extends Component {
   constructor() {
@@ -10,31 +9,67 @@ class EditStudentContainer extends Component {
     this.state = {
       firstname: "",
       lastname: "",
-      redirect: false,
-      redirectId: null,
+      email: "",
+      imageUrl: "",
+      gpa: null,
+      campusId: null,
     };
   }
 
-  componentWillUnmount() {
+  handleChange = (event) => {
     this.setState({
-      redirect: false,
-      redirectId: null,
+      [event.target.name]: event.target.value,
     });
-  }
+  };
+
+  handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent browser reload/refresh after submit.
+    let student = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      imageUrl: this.state.imageUrl,
+      gpa: this.state.gpa,
+      campusId: this.state.campusId,
+      id: this.props.student.id,
+    };
+
+    if (this.state.imageUrl === "") {
+      delete student.imageUrl;
+    }
+
+    if (this.state.gpa === null) {
+      delete student.gpa;
+    }
+
+    // Add new student in back-end database
+    await this.props.editStudent(student);
+
+    if (this.props.refreshStudent !== undefined) {
+      this.props.refreshStudent(student.id);
+    }
+
+    // Update state, and trigger redirect to show the new student
+    this.setState({
+      firstname: "",
+      lastname: "",
+      email: "",
+      imageUrl: "",
+      gpa: null,
+      campusId: null,
+    });
+  };
 
   render() {
-    if(this.state.redirect) {
-      return (<Redirect to={`/student/${this.state.redirectId}`}/>)
-    }
     return (
-      <EditStudentView 
-        student = {this.props.student}
-        editStudent = {this.props.editStudent}
-        deleteStudent = {this.props.deleteStudent}
-        fetchStudent = {this.props.fetchStudent}
-        handleChange = {this.handleChange} 
-        handleSubmit = {this.handleSubmit}      
-      />
+      <div>
+        <BasicModal
+          flag="student"
+          itemObj={this.props.student}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
     );
   }
 }

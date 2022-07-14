@@ -13,10 +13,11 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BskCard } from "../BskCard";
+import EditCampusContainer from "../containers/EditCampusContainer";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const { campus } = props;
+  const { campus, refreshCampus } = props;
 
   // Render a single Campus view with list of its students
   return (
@@ -38,12 +39,34 @@ const CampusView = (props) => {
         <Typography variant="h3" component="h1">
           {campus.name}
         </Typography>
+        <Typography variant="h6" component="h3" m="0.75em">
+          Campus ID: {campus.id}
+        </Typography>
         <Typography variant="h6" paragraph>
           {campus.address}
         </Typography>
         <Typography variant="h6" paragraph>
           {campus.description}
         </Typography>
+
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            variant="outlined"
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              props.deleteCampus(campus.id);
+            }}
+            sx={{ mr: "2em" }}
+          >
+            <Link to="/campuses" style={{ textDecoration: "none" }}>
+              Delete Campus
+            </Link>
+          </Button>
+
+          <EditCampusContainer campus={campus} refreshCampus={refreshCampus} />
+        </Box>
 
         <Typography variant="h5" component="h2" mt="3em">
           Students
@@ -67,20 +90,6 @@ const CampusView = (props) => {
           })}
         </Box>
       </Box>
-      <br/><br/>
-      <Button
-            variant="outlined"
-            onMouseDown={(e) => e.stopPropagation()}
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              props.deleteCampus(campus.id);
-            }}
-          >
-            <Link to="/campuses" style={{ textDecoration: 'none'}}>
-            Delete Campus
-            </Link>
-          </Button>
     </div>
   );
 };

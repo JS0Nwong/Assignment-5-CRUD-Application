@@ -1,5 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import EditStudentContainer from "../containers/EditStudentContainer";
 
 /*==================================================
 StudentView.js
@@ -8,9 +9,7 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the single student view page.
 ================================================== */
 const StudentView = (props) => {
-  const { student } = props;
-
-  console.log(student.gpa);
+  const { student, refreshStudent } = props;
 
   // Render a single Student view
   return (
@@ -47,21 +46,27 @@ const StudentView = (props) => {
 
         <br />
         <br />
-        <br />
-        <br />
-        <Button
-          variant="outlined"
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            props.deleteStudent(student.id);
-          }}
-        >
-          <Link to="/students" style={{ textDecoration: "none" }}>
-            Delete Student
-          </Link>
-        </Button>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            variant="outlined"
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              props.deleteStudent(student.id);
+            }}
+            sx={{ mr: "2em" }}
+          >
+            <Link to="/students" style={{ textDecoration: "none" }}>
+              Delete Student
+            </Link>
+          </Button>
+
+          <EditStudentContainer
+            student={student}
+            refreshStudent={refreshStudent}
+          />
+        </Box>
       </Box>
     </div>
   );

@@ -1,100 +1,75 @@
 import * as React from "react";
 import Modal from "@mui/material/Modal";
-import { Box, TextField, Typography, Button, styled } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { editCampusThunk, editStudentThunk } from "../store/thunks";
+import { connect } from "react-redux";
+import { FaPen } from "react-icons/fa";
+import NewCampusView from "./views/NewCampusView";
+import ClearIcon from "@mui/icons-material/Clear";
+import { NewStudentView } from "./views";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 1000,
-  height: 700,
-  bgcolor: "background.paper",
-  border: "1px solid #000",
-  boxShadow: 24,
-  p: 4,
+const editSubmitHelper = (e, closeModal, submitFunc) => {
+  closeModal();
+  submitFunc(e);
 };
 
-const FormContainer = styled("div")(() => ({
-  display: "flex",
-  justifyContent: "center",
-}));
-
-const CampusInfoField = styled(TextField)(() => ({
-  margin: "2em",
-}));
-
-export const BasicModal = (props) => {
+const BasicModal = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { handleSubmit, handleChange } = props;
+  const { handleSubmit, handleChange, itemObj, flag } = props;
 
   return (
     <div>
-      <Button onClick={handleOpen}>Edit Details</Button>
+      <Button
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          handleOpen();
+        }}
+        variant="outlined"
+      >
+        <FaPen />
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <Box sx={style}>
-          <Typography component="h2" variant="h2" sx={{ paddingLeft: 4 }}>
-            Edit {props.title}
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <Box
-              sx={{ width: "100%", display: "flex", flexDirection: "column" }}
-            >
-              <CampusInfoField
-                variant="outlined"
-                name="name"
-                label={props.name}
-                inputProps={{
-                  pattern: "[a-zA-Z ]+",
-                  title: "Only alphabetic characters are allowed.",
-                }}
-                InputLabelProps={{ required: false }}
-                required
-                onChange={handleChange}
-                sx={{ width: "33%" }}
-              />
-              <CampusInfoField
-                variant="outlined"
-                name="address"
-                label={props.address}
-                InputLabelProps={{ required: false }}
-                onChange={handleChange}
-                required
-                sx={{ width: "33%" }}
-              />
-              <CampusInfoField
-                variant="outlined"
-                name="image"
-                label={props.label}
-                InputLabelProps={{ required: false }}
-                onChange={handleChange}
-                sx={{ width: "33%" }}
-              />
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <CampusInfoField
-                variant="outlined"
-                name="description"
-                label={props.description}
-                multiline
-                rows={4}
-                onChange={handleChange}
-                sx={{ width: "100%" }}
-              />
-            </Box>
-          </form>
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
-        </Box>
+        <div>
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button variant="contained" onClick={handleClose}>
+              <ClearIcon />
+            </Button>
+          </Box>
+
+          {flag === "campus" ? (
+            <NewCampusView
+              handleChange={handleChange}
+              handleSubmit={(e) => {
+                editSubmitHelper(e, handleClose, handleSubmit);
+              }}
+              campus={itemObj}
+            />
+          ) : (
+            <NewStudentView
+              handleChange={handleChange}
+              handleSubmit={(e) => {
+                editSubmitHelper(e, handleClose, handleSubmit);
+              }}
+              student={itemObj}
+            />
+          )}
+        </div>
       </Modal>
     </div>
   );
@@ -107,4 +82,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default BasicModal;
+export default connect(null, mapDispatch)(BasicModal);

@@ -5,7 +5,7 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
-import { FaTrash, FaPen } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import {
   Typography,
   Button,
@@ -15,7 +15,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
-import { BasicModal } from "../Modal";
+import EditStudentContainer from "../containers/EditStudentContainer";
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;
@@ -46,7 +46,11 @@ const AllStudentsView = (props) => {
           let name = student.firstname + " " + student.lastname;
           return (
             <BskCard variant="outlined" key={student.id}>
-              <CardActionArea component={Link} to={`/student/${student.id}`}>
+              <CardActionArea
+                component={Link}
+                to={`/student/${student.id}`}
+                sx={{ height: "100%" }}
+              >
                 <CardMedia
                   component="img"
                   height="150"
@@ -57,36 +61,25 @@ const AllStudentsView = (props) => {
                 <CardContent sx={{ padding: "1.25em" }}>
                   <h2>{name}</h2>
 
-                  <Button
-                    variant="outlined"
-                    onMouseDown={(e) => e.stopPropagation()}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      deleteStudent(student.id);
-                    }}
-                  >
-                    <FaTrash />
-                  </Button>
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Button
+                      variant="outlined"
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        deleteStudent(student.id);
+                      }}
+                      sx={{
+                        mr: "2em",
+                      }}
+                    >
+                      <FaTrash />
+                    </Button>
+                    <EditStudentContainer student={student} />
+                  </Box>
                 </CardContent>
               </CardActionArea>
-              <Button
-                variant="outlined"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  props.editStudent(student.id);
-                }}
-                component={() => (
-                  <BasicModal
-                    title="Student"
-                    namefirst={props.firstname}
-                    label="Student Image URL"
-                  />
-                )}
-              >
-                <FaPen />
-              </Button>
             </BskCard>
           );
         })}

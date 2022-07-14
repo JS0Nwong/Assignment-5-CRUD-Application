@@ -1,19 +1,16 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { editCampusThunk, fetchCampusThunk } from "../../store/thunks";
-import { EditCampusView } from "../views";
-import { Redirect } from "react-router-dom";
-import Heading from "../Heading";
+import { editCampusThunk } from "../../store/thunks";
+import BasicModal from "../Modal";
 
 class EditCampusContainer extends Component {
   constructor() {
     super();
     this.state = {
-      campusName: "",
+      name: "",
       address: "",
       description: "",
-      redirect: false,
-      redirectId: null,
+      imageUrl: "",
     };
   }
 
@@ -23,47 +20,45 @@ class EditCampusContainer extends Component {
     });
   };
 
-  handleSave = async (e) => {
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
     const campus = {
-      campusName: this.state.campusName,
+      name: this.state.name,
       address: this.state.address,
       description: this.state.description,
+      imageUrl: this.state.imageUrl,
+      id: this.props.campus.id,
     };
 
-    let editedCampus = await this.props.editCampus(campus);
+    if (this.state.imageUrl === "") {
+      delete campus.imageUrl;
+    }
+
+    await this.props.editCampus(campus);
+
+    if (this.props.refreshCampus !== undefined) {
+      this.props.refreshCampus(campus.id);
+    }
 
     this.setState({
-      campusName: "",
+      name: "",
       address: "",
       description: "",
-      redirect: true,
-      redirectId: editedCampus.id,
+      imageUrl: "",
     });
   };
 
-  componentWillUnmount() {
-    this.setState({
-      redirect: false,
-      redirectId: null,
-    });
-  }
-
   render() {
-    if(this.state.redirect) {
-      return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
-    }
     return (
       <div>
-        <Heading>Edit Campus</Heading> 
-          <EditCampusView 
+        <BasicModal
+          flag="campus"
+          itemObj={this.props.campus}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          campus={this.props.campus}
-          editCampus={this.props.editCampus}
-          fetchCampus={this.props.fetchCampus}
         />
       </div>
-
     );
   }
 }

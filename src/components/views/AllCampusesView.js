@@ -6,7 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { FaTrash, FaPen } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import {
   Typography,
   Button,
@@ -16,7 +16,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { BskCard } from "../BskCard";
-import BasicModal from "../Modal";
+import EditCampusContainer from "../containers/EditCampusContainer";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
@@ -44,10 +44,14 @@ const AllCampusesView = (props) => {
       <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {props.allCampuses.map((campus) => (
           <BskCard variant="outlined" key={campus.id}>
-            <CardActionArea component={Link} to={`/campus/${campus.id}`}>
+            <CardActionArea
+              component={Link}
+              to={`/campus/${campus.id}`}
+              sx={{ height: "100%" }}
+            >
               <CardMedia
                 component="img"
-                height="auto"
+                height="150"
                 image={campus.imageUrl}
                 alt="university photo"
               />
@@ -66,39 +70,22 @@ const AllCampusesView = (props) => {
                 <Typography component="p" fontSize="15px" m="0.5em">
                   {campus.description}
                 </Typography>
-
-                <Button
-                  variant="outlined"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    props.deleteCampus(campus.id);
-                  }}
-                >
-                  <FaTrash />
-                </Button>
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <Button
+                    variant="outlined"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      props.deleteCampus(campus.id);
+                    }}
+                    sx={{ mr: "2em" }}
+                  >
+                    <FaTrash />
+                  </Button>
+                  <EditCampusContainer campus={campus} />
+                </Box>
               </CardContent>
             </CardActionArea>
-
-            <Button
-              variant="outlined"
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                props.editCampus(campus.id);
-              }}
-              component={() => (
-                <BasicModal
-                  title="Campus"
-                  name={campus.name}
-                  address={campus.address}
-                  description={campus.description}
-                  label="Campus Image URL"
-                />
-              )}
-            >
-              <FaPen />
-            </Button>
           </BskCard>
         ))}
       </Box>
