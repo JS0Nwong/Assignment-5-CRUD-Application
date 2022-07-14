@@ -20,7 +20,8 @@ const FormContainer = styled("div")(() => ({
 }));
 
 const StudentInfoField = styled(TextField)(() => ({
-  margin: "1em",
+  margin: ".5rem",
+  fontWeight: "bold"
 }));
 
 const NewStudentView = (props) => {
@@ -36,8 +37,8 @@ const NewStudentView = (props) => {
           borderRadius: "1.25em",
           m: "2em",
           p: "2em",
-          minWidth: "260px",
-          maxWidth: "400px",
+          minWidth: "460px",
+          maxWidth: "900px",
           boxShadow:
             "rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px",
         }}
@@ -45,8 +46,10 @@ const NewStudentView = (props) => {
         <Typography
           component="h2"
           sx={{
-            fontSize: "20px",
+            fontSize: "30px",
             color: "#11153e",
+            fontWeight: "bold",
+
           }}
         >
           Add a Student
@@ -63,7 +66,7 @@ const NewStudentView = (props) => {
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <StudentInfoField
-                variant="outlined"
+                variant="standard"
                 label="First Name"
                 name="firstname"
                 InputLabelProps={{ required: false }}
@@ -73,12 +76,13 @@ const NewStudentView = (props) => {
                 }}
                 onChange={handleChange}
                 required
+                sx={{width: "100%"}}
               />
             </Grid>
 
             <Grid item xs={6}>
               <StudentInfoField
-                variant="outlined"
+                variant="standard"
                 label="Last Name"
                 name="lastname"
                 inputProps={{
@@ -88,24 +92,13 @@ const NewStudentView = (props) => {
                 InputLabelProps={{ required: false }}
                 onChange={handleChange}
                 required
+                sx={{width: "100%"}}
               />
             </Grid>
 
             <Grid item xs={6}>
               <StudentInfoField
-                variant="outlined"
-                label="Email"
-                name="email"
-                type="email"
-                InputLabelProps={{ required: false }}
-                onChange={handleChange}
-                required
-              />
-            </Grid>
-
-            <Grid item xs={6}>
-              <StudentInfoField
-                variant="outlined"
+                variant="standard"
                 label="GPA"
                 name="gpa"
                 type="number"
@@ -117,7 +110,7 @@ const NewStudentView = (props) => {
                   "[type=number]::-webkit-inner-spin-button": {
                     WebkitAppearance: "none",
                   },
-                  width: "78%",
+                  width: "100%",
                 }}
                 inputProps={{
                   min: "0",
@@ -130,17 +123,7 @@ const NewStudentView = (props) => {
 
             <Grid item xs={6}>
               <StudentInfoField
-                variant="outlined"
-                type="url"
-                name="imageUrl"
-                label="Image URL"
-                onChange={handleChange}
-              />
-            </Grid>
-
-            <Grid item xs={6}>
-              <StudentInfoField
-                variant="outlined"
+                variant="standard"
                 type="number"
                 name="campusId"
                 label="Campus ID"
@@ -153,13 +136,37 @@ const NewStudentView = (props) => {
                   "[type=number]::-webkit-inner-spin-button": {
                     WebkitAppearance: "none",
                   },
+                  width: "100%",
                 }}
                 required
               />
             </Grid>
+            <Grid item xs={12}>
+              <StudentInfoField
+                variant="standard"
+                label="Email"
+                name="email"
+                type="email"
+                InputLabelProps={{ required: false }}
+                onChange={handleChange}
+                required
+                sx={{width: "100%"}}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <StudentInfoField
+                variant="standard"
+                type="url"
+                name="imageUrl"
+                label="Image URL"
+                onChange={handleChange}
+                sx={{width: "100%"}}
+              />
+            </Grid>
           </Grid>
+          
 
-          <Button type="submit" variant="contained" sx={{ mt: "2em" }}>
+          <Button type="submit" variant="contained" sx={{ mt: "2em", width: "100%" }}>
             Submit
           </Button>
         </form>
