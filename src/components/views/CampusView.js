@@ -67,7 +67,7 @@ const CampusView = (props) => {
           })}
         </Box>
       </Box>
-      <br/><br/><br/><br/>
+      <br/><br/>
       <Button
             variant="outlined"
             onMouseDown={(e) => e.stopPropagation()}
