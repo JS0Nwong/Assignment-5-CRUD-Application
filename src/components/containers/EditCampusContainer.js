@@ -37,6 +37,10 @@ class EditCampusContainer extends Component {
 
     await this.props.editCampus(campus);
 
+    if (this.props.refreshCampus !== undefined) {
+      this.props.refreshCampus(campus.id);
+    }
+
     this.setState({
       name: "",
       address: "",

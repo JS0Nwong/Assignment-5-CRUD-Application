@@ -1,5 +1,7 @@
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
+import EditStudentContainer from "../containers/EditStudentContainer";
 
 /*==================================================
 StudentView.js
@@ -45,21 +47,24 @@ const StudentView = (props) => {
 
         <br />
         <br />
-        <br />
-        <br />
-        <Button
-          variant="outlined"
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            props.deleteStudent(student.id);
-          }}
-        >
-          <Link to="/students" style={{ textDecoration: "none" }}>
-            Delete Student
-          </Link>
-        </Button>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            variant="outlined"
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              props.deleteStudent(student.id);
+            }}
+            component={Link}
+            to="/students"
+            sx={{ mr: "2em" }}
+          >
+            <FaTrash />
+          </Button>
+
+          <EditStudentContainer student={student} />
+        </Box>
       </Box>
     </div>
   );

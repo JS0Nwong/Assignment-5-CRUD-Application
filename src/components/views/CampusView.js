@@ -13,10 +13,11 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BskCard } from "../BskCard";
+import EditCampusContainer from "../containers/EditCampusContainer";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const { campus } = props;
+  const { campus, refreshCampus } = props;
 
   // Render a single Campus view with list of its students
   return (
@@ -45,19 +46,24 @@ const CampusView = (props) => {
           {campus.description}
         </Typography>
 
-        <Button
-          variant="outlined"
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            props.deleteCampus(campus.id);
-          }}
-        >
-          <Link to="/campuses" style={{ textDecoration: "none" }}>
-            Delete Campus
-          </Link>
-        </Button>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            variant="outlined"
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              props.deleteCampus(campus.id);
+            }}
+            sx={{ mr: "2em" }}
+          >
+            <Link to="/campuses" style={{ textDecoration: "none" }}>
+              Delete Campus
+            </Link>
+          </Button>
+
+          <EditCampusContainer campus={campus} refreshCampus={refreshCampus} />
+        </Box>
 
         <Typography variant="h5" component="h2" mt="3em">
           Students
