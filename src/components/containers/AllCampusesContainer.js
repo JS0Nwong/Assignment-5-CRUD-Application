@@ -8,7 +8,7 @@ If needed, it also defines the component's "connect" function.
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { deleteCampusThunk, fetchAllCampusesThunk } from "../../store/thunks";
+import { deleteCampusThunk, fetchAllCampusesThunk, fetchAllStudentsThunk, deleteStudentThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 import Heading from "../Heading";
 
@@ -16,6 +16,7 @@ class AllCampusesContainer extends Component {
   // Get all campuses data from back-end database
   componentDidMount() {
     this.props.fetchAllCampuses();
+    this.props.fetchAllStudents();
   }
 
   // Render All Campuses view by passing all campuses data as props to the corresponding View component
@@ -28,6 +29,8 @@ class AllCampusesContainer extends Component {
         <AllCampusesView
           allCampuses={this.props.allCampuses}
           deleteCampus={this.props.deleteCampus}
+          students={this.props.allStudents}
+          deleteStudent={this.props.deleteStudent}
         />
       </div>
     );
@@ -40,6 +43,7 @@ class AllCampusesContainer extends Component {
 const mapState = (state) => {
   return {
     allCampuses: state.allCampuses, // Get the State object from Reducer "allCampuses"
+    allStudents: state.allStudents,
   };
 };
 // 2. The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
@@ -48,6 +52,8 @@ const mapDispatch = (dispatch) => {
   return {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
     deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
+    fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
+    deleteStudent: (studentId) => dispatch(deleteStudentThunk(studentId)),
   };
 };
 
