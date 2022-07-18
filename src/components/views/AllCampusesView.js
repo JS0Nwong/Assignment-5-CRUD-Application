@@ -76,7 +76,10 @@ const AllCampusesView = (props) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       e.preventDefault();
-                      props.deleteCampus(campus.id);
+                      {campus.students.map((student) => {
+                        props.deleteStudent(student.id);
+                        props.deleteCampus(campus.id);
+                      })}
                     }}
                     sx={{ mr: "2em" }}
                   >
